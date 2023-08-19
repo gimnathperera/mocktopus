@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'Next.js + NextUI',
+  name: 'Mocktopus | TS interface based data generator',
   description: 'Make beautiful websites regardless of your design experience.',
   navItems: [],
   navMenuItems: [],
