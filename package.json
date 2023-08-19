@@ -15,6 +15,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.5.1",
     "@nextui-org/button": "2.0.9",
     "@nextui-org/code": "2.0.7",
     "@nextui-org/input": "2.0.10",
@@ -51,7 +52,7 @@
     "@typescript-eslint/parser": "^6.4.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-react": "^7.33.2",
-    "prettier": "^3.0.2",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "prettier": "^3.0.2"
   }
 }
