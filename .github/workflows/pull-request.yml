@@ -1,0 +1,32 @@
+name: Linter
+on:
+  pull_request:
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['18.x']
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v3
+
+      - name: Add SHORT_SHA env property with commit short sha
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-8`" >> $GITHUB_ENV
+
+      - name: Git sort sha
+        run: echo ${SHORT_SHA}
+
+      - name: Setup node version ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+
+      - name: Linter
+        run: npm run lint
