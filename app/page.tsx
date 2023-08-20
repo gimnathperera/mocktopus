@@ -1,14 +1,17 @@
+'use client';
 import { FC } from 'react';
 import CodeEditor from '@/components/code-editor';
+import Header from '@/components/header';
+import Result from '@/components/result';
 
 const Home: FC = () => {
   return (
-    <section className='flex gap-4 h-full'>
-      <div className=' bg-[#1E1E1E] w-1/2 rounded-lg'>
+    <section className='h-full'>
+      <Header />
+      <div className='flex justify-center gap-6 h-[calc(100vh-12rem)]'>
         <CodeEditor />
+        <Result />
       </div>
-
-      <div className='bg-red-400 w-1/2 rounded-lg py-2 px-8'>Yellow</div>
     </section>
   );
 };

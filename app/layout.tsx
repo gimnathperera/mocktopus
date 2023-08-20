@@ -36,7 +36,7 @@ const RootLayout: FC<Props> = ({ children }) => {
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
           <div className='relative flex flex-col h-screen'>
             <Navbar />
-            <main className='w-full mx-auto py-6 px-12 flex-grow'>{children}</main>
+            <main className='container mx-auto px-12 flex-grow'>{children}</main>
             <Footer />
           </div>
         </Providers>
