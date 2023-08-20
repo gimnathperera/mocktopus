@@ -20,50 +20,6 @@ const CodeEditor: FC<Props> = ({}) => {
     age: 24;
     bio: "Architect & UI Designer";
   }
-
-  interface Person {
-    id: 1;
-    firstName: "Jhon";
-    lastName: "Doe";
-    age: 24;
-    bio: "Architect & UI Designer";
-  }
-  interface Person {
-    id: 1;
-    firstName: "Jhon";
-    lastName: "Doe";
-    age: 24;
-    bio: "Architect & UI Designer";
-  }
-
-  interface Person {
-    id: 1;
-    firstName: "Jhon";
-    lastName: "Doe";
-    age: 24;
-    bio: "Architect & UI Designer";
-  }
-  interface Person {
-    id: 1;
-    firstName: "Jhon";
-    lastName: "Doe";
-    age: 24;
-    bio: "Architect & UI Designer";
-  }
-  interface Person {
-    id: 1;
-    firstName: "Jhon";
-    lastName: "Doe";
-    age: 24;
-    bio: "Architect & UI Designer";
-  }
-  interface Person {
-    id: 1;
-    firstName: "Jhon";
-    lastName: "Doe";
-    age: 24;
-    bio: "Architect & UI Designer";
-  }
  `}
           theme='vs-dark'
           options={{
