@@ -1,6 +1,7 @@
 'use client';
 import { FC } from 'react';
 import Editor from '@monaco-editor/react';
+import { Spinner } from '@nextui-org/react';
 
 type Props = {};
 
@@ -9,7 +10,7 @@ const CodeEditor: FC<Props> = ({}) => {
     <div className='py-2 h-full'>
       <Editor
         defaultLanguage='typescript'
-        defaultValue={`// You can use typescript interfaces like following;        
+        defaultValue={`// You can use typescript interfaces like following; 
 
   interface Person {
     id: 1;
@@ -18,7 +19,7 @@ const CodeEditor: FC<Props> = ({}) => {
     age: 24;
     bio: "Architect & UI Designer";
   }
-  
+
  `}
         theme='vs-dark'
         options={{
@@ -27,6 +28,7 @@ const CodeEditor: FC<Props> = ({}) => {
           },
           fontSize: 14,
         }}
+        loading={<Spinner size='sm' />}
       />
     </div>
   );
