@@ -20,8 +20,8 @@ export const Navbar: FC = () => {
     <NextUINavbar maxWidth='full' position='sticky'>
       <NavbarContent className='basis-1/5 sm:basis-full' justify='start'>
         <NavbarBrand as='li' className='gap-3 max-w-fit'>
-          <NextLink className='flex justify-start items-center gap-1' href='/'>
-            <Logo />
+          <NextLink className='flex justify-start items-center gap-1 font-bold text-lg' href='/'>
+            <Logo /> Mocktopus
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
