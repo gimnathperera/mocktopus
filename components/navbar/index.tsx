@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -11,17 +12,17 @@ import { siteConfig } from '@/config/site';
 import NextLink from 'next/link';
 import { ThemeSwitch } from '@/components/theme-switch';
 import { GithubIcon } from '@/components/icons';
-
-import { Logo } from '@/components/icons';
-import { FC } from 'react';
+import Image from 'next/image';
+import logo from '../../public/logo.png';
 
 export const Navbar: FC = () => {
   return (
     <NextUINavbar maxWidth='full' position='sticky'>
       <NavbarContent className='basis-1/5 sm:basis-full' justify='start'>
         <NavbarBrand as='li' className='gap-3 max-w-fit'>
-          <NextLink className='flex justify-start items-center gap-1 font-bold text-lg' href='/'>
-            <Logo /> Mocktopus
+          <NextLink className='flex justify-start items-center gap-1 font-bold text-xl' href='/'>
+            <Image src={logo} alt='logo' placeholder='blur' width={24} height={24} />
+            Mocktopus
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
