@@ -21,7 +21,7 @@ export const Navbar: FC = () => {
       <NavbarContent className='basis-1/5 sm:basis-full' justify='start'>
         <NavbarBrand as='li' className='gap-3 max-w-fit'>
           <NextLink className='flex justify-start items-center gap-1 font-bold text-xl' href='/'>
-            <Image src={logo} alt='logo' placeholder='blur' width={24} height={24} />
+            <Image src={logo} alt='logo' width={24} height={24} />
             Mocktopus
           </NextLink>
         </NavbarBrand>

@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from '@nextui-org/react';
 
-type Props = {};
+type Props = {
+  onGenerate: () => void;
+};
 
-const Header: FC<Props> = () => {
+const Header: FC<Props> = ({ onGenerate }) => {
   return (
     <div className='pb-6 text-center flex items-center justify-between'>
       <h1 className='tracking-tight inline font-semibold text-[2.3rem] lg:text-3xl'>
@@ -20,7 +22,7 @@ const Header: FC<Props> = () => {
             <DropdownItem key='edit'>100</DropdownItem>
           </DropdownMenu>
         </Dropdown>
-        <Button color='primary' variant='shadow'>
+        <Button color='primary' variant='shadow' onClick={onGenerate}>
           🪄 Generate
         </Button>
       </div>
