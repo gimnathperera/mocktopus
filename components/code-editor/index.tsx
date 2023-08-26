@@ -1,26 +1,27 @@
 'use client';
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import { Spinner } from '@nextui-org/react';
 
-type Props = {};
+type Props = { onCodeChange: (code: string) => void; initialCode: string };
 
-const CodeEditor: FC<Props> = ({}) => {
+const CodeEditor: FC<Props> = ({ onCodeChange, initialCode }) => {
+  const [code, setCode] = useState<string>(initialCode);
+
+  const handleCodeChange = useCallback(
+    (value: string | undefined): void => {
+      const newCode = value ?? '';
+      setCode(newCode);
+      onCodeChange(newCode);
+    },
+    [onCodeChange],
+  );
+
   return (
     <div className='bg-[#1E1E1E] rounded-lg w-1/2'>
       <div className='py-2 h-full'>
         <Editor
           defaultLanguage='typescript'
-          defaultValue={`// You can use typescript interfaces like following; 
-
-  interface Person {
-    id: 1;
-    firstName: "Jhon";
-    lastName: "Doe";
-    age: 24;
-    bio: "Architect & UI Designer";
-  }
- `}
           theme='vs-dark'
           options={{
             minimap: {
@@ -29,6 +30,8 @@ const CodeEditor: FC<Props> = ({}) => {
             fontSize: 14,
           }}
           loading={<Spinner size='sm' />}
+          onChange={handleCodeChange}
+          value={code}
         />
       </div>
     </div>
