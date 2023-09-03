@@ -17,14 +17,14 @@ interface Person {
 
 const Home: FC = () => {
   const [code, setCode] = useState<string>(DEFAULT_INTERFACE);
-  const [selectedKeys, setSelectedKeys] = useState(new Set(['10']));
+  const [numberOfRows, setNumberOfRows] = useState(new Set(['10']));
 
   const handleOnGenerate = (): void => {
     console.log('*********', code);
   };
 
   const handleOnRowCountChange = (newRowCount: any): void => {
-    setSelectedKeys(newRowCount);
+    setNumberOfRows(newRowCount);
   };
   const handleOnCodeChange = (newCode: string): void => {
     setCode(newCode);
@@ -34,7 +34,7 @@ const Home: FC = () => {
     <section className='h-full'>
       <Header
         onGenerate={handleOnGenerate}
-        selectedKeys={selectedKeys}
+        numberOfRows={numberOfRows}
         onRowCountChange={handleOnRowCountChange}
       />
       <div className='flex justify-center gap-6 h-[calc(100vh-12rem)]'>
