@@ -11,13 +11,13 @@ import {
 type Props = {
   onGenerate: () => void;
   onRowCountChange: (rowCount: Selection) => void;
-  selectedKeys: any;
+  numberOfRows: any;
 };
 
-const Header: FC<Props> = ({ onGenerate, onRowCountChange, selectedKeys }) => {
+const Header: FC<Props> = ({ onGenerate, onRowCountChange, numberOfRows }) => {
   const selectedValue = React.useMemo(
-    () => Array.from(selectedKeys).join(', ').replaceAll('_', ' '),
-    [selectedKeys],
+    () => Array.from(numberOfRows).join(', ').replaceAll('_', ' '),
+    [numberOfRows],
   );
 
   return (
@@ -37,7 +37,7 @@ const Header: FC<Props> = ({ onGenerate, onRowCountChange, selectedKeys }) => {
             variant='flat'
             disallowEmptySelection
             selectionMode='single'
-            selectedKeys={selectedKeys}
+            selectedKeys={numberOfRows}
             onSelectionChange={onRowCountChange}
           >
             <DropdownItem key='10'>10</DropdownItem>
