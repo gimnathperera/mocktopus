@@ -3,26 +3,19 @@ import { FC, useState } from 'react';
 import CodeEditor from '@/components/code-editor';
 import Header from '@/components/header';
 import Result from '@/components/result';
-
-const DEFAULT_INTERFACE = `// You can use typescript interfaces like following; 
-
-interface Person {
-  id: number;
-  firstName: string;
-  lastName: string;
-  age: number;
-  bio: string;
-}
-`;
+import { extractInterfaces, extractInterfaceNames } from '@/utils';
+import { Initials } from '@/config/constants';
 
 const Home: FC = () => {
-  const [code, setCode] = useState<string>(DEFAULT_INTERFACE);
+  const [code, setCode] = useState<string>(Initials.DefaultInterface);
   const [numberOfRows, setNumberOfRows] = useState(new Set(['10']));
 
   const handleOnGenerate = (): void => {
-    console.log('*********', code);
+    console.log('names*********', extractInterfaceNames(code));
+    console.log('total*********', extractInterfaces(code));
   };
 
+  // TODO: fix any type here
   const handleOnRowCountChange = (newRowCount: any): void => {
     setNumberOfRows(newRowCount);
   };
