@@ -1,31 +1,31 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC, useRef, useState } from 'react';
+import { useDisclosure } from '@nextui-org/react';
 import CodeEditor from '@/components/code-editor';
 import Header from '@/components/header';
 import Result from '@/components/result';
-
-const DEFAULT_INTERFACE = `// You can use typescript interfaces like following; 
-
-interface Person {
-  id: number;
-  firstName: string;
-  lastName: string;
-  age: number;
-  bio: string;
-}
-`;
+import { extractInterfaceNames } from '@/utils';
+import { Initials } from '@/config/constants';
+import InterfaceSelectModal from '@/components/interface-select-modal';
 
 const Home: FC = () => {
-  const [code, setCode] = useState<string>(DEFAULT_INTERFACE);
-  const [numberOfRows, setNumberOfRows] = useState(new Set(['10']));
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [code, setCode] = useState<string>(Initials.DefaultInterface);
+  const [numberOfRows, setNumberOfRows] = useState(new Set(['1']));
+
+  const selectedInterfaces = useRef<string[] | null>(null);
 
   const handleOnGenerate = (): void => {
-    console.log('*********', code);
+    const interfaceNamesToMock = extractInterfaceNames(code);
+    selectedInterfaces.current = interfaceNamesToMock;
+    onOpen();
   };
 
+  // TODO: fix any type here
   const handleOnRowCountChange = (newRowCount: any): void => {
     setNumberOfRows(newRowCount);
   };
+
   const handleOnCodeChange = (newCode: string): void => {
     setCode(newCode);
   };
@@ -41,6 +41,12 @@ const Home: FC = () => {
         <CodeEditor onCodeChange={handleOnCodeChange} initialCode={code} />
         <Result />
       </div>
+
+      <InterfaceSelectModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        selectedInterfaces={selectedInterfaces.current}
+      />
     </section>
   );
 };
