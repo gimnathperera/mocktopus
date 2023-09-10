@@ -1,2 +1,2 @@
-export * from './extract-interfaces';
 export * from './extract-interface-names';
+export * from './generate-mocks';

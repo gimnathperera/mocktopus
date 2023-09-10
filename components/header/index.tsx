@@ -23,26 +23,26 @@ const Header: FC<Props> = ({ onGenerate, onRowCountChange, numberOfRows }) => {
   return (
     <div className='pb-6 text-center flex items-center justify-between'>
       <h1 className='tracking-tight inline font-semibold text-[2.3rem] lg:text-3xl'>
-        Generate Fake Data
+        Generate 𝔽𝕒𝕜𝕖 Data
       </h1>
       <div className='flex items-center gap-4'>
         <Dropdown>
           <DropdownTrigger>
             <Button variant='bordered' className='capitalize'>
-              {`#️⃣ Scale [${selectedValue} of rows]`}
+              {`#️⃣ Scale [${selectedValue} of row${Number(selectedValue) > 1 ? 's' : ''}]`}
             </Button>
           </DropdownTrigger>
           <DropdownMenu
-            aria-label='Single selection example'
+            aria-label='row-count-select'
             variant='flat'
             disallowEmptySelection
             selectionMode='single'
             selectedKeys={numberOfRows}
             onSelectionChange={onRowCountChange}
           >
+            <DropdownItem key='1'>1</DropdownItem>
             <DropdownItem key='10'>10</DropdownItem>
             <DropdownItem key='50'>50</DropdownItem>
-            <DropdownItem key='100'>100</DropdownItem>
           </DropdownMenu>
         </Dropdown>
 
