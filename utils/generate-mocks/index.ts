@@ -2,13 +2,13 @@ import { mock } from 'intermock';
 
 export const generateMocks = (
   code: string,
-  selectedInterfaces: string[],
+  detectedInterfaces: string[],
 ): string | Record<string | number, {}> => {
   const mockedData = mock({
     language: 'typescript',
     files: [['docs', code]],
     output: 'string',
-    interfaces: selectedInterfaces,
+    interfaces: detectedInterfaces,
   });
 
   return mockedData;

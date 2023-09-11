@@ -11,12 +11,12 @@ import InterfaceSelectContent from '@/components/interface-select-content';
 
 interface Props {
   isOpen: boolean;
-  selectedInterfaces: string[] | null;
+  detectedInterfaces: string[] | null;
   onOpenChange: () => void;
 }
 
-const InterfaceSelectModal: FC<Props> = ({ isOpen, onOpenChange, selectedInterfaces }) => {
-  console.log('🚀 ~ file: index.tsx:18 ~ selectedInterfaces:', selectedInterfaces);
+const InterfaceSelectModal: FC<Props> = ({ isOpen, onOpenChange, detectedInterfaces }) => {
+  console.log('🚀 ~ file: index.tsx:18 ~ detectedInterfaces:', detectedInterfaces);
 
   return (
     <>
@@ -29,7 +29,7 @@ const InterfaceSelectModal: FC<Props> = ({ isOpen, onOpenChange, selectedInterfa
               </ModalHeader>
               <ModalBody>
                 <p>Please select the interfaces you want to generate mock data for.</p>
-                <InterfaceSelectContent />
+                <InterfaceSelectContent detectedInterfaces={detectedInterfaces ?? []} />
               </ModalBody>
               <ModalFooter>
                 <Button color='danger' variant='bordered' onPress={onClose}>

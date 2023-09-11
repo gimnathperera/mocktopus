@@ -1,23 +1,19 @@
 import React, { FC, useState } from 'react';
-import { Listbox, ListboxItem } from '@nextui-org/react';
 import { Chip } from '@nextui-org/react';
+import { Colors } from '@/config/constants';
+import { Listbox, ListboxItem, Radio, RadioGroup } from '@nextui-org/react';
 
-const InterfaceSelectContent: FC = () => {
-  const [selectedKeys, setSelectedKeys] = useState<Set<string> | any>(new Set(['text']));
+interface Props {
+  detectedInterfaces: string[];
+}
 
-  const backgroundColors: string[] = [
-    'bg-primary',
-    'bg-secondary',
-    'bg-warning',
-    'bg-danger',
-    'bg-default',
-  ];
+const InterfaceSelectContent: FC<Props> = ({ detectedInterfaces }) => {
+  const [interfaces, setInterfaces] = useState<Set<string> | any>(new Set(detectedInterfaces));
+
   const handleChipClose = (closedInterface: string): void => {
-    if (selectedKeys.size === 1) return;
-    const newSelectedKeys = new Set(
-      Array.from(selectedKeys).filter(key => key !== closedInterface),
-    );
-    setSelectedKeys(newSelectedKeys);
+    if (interfaces.size === 1) return;
+    const newSelectedKeys = new Set(Array.from(interfaces).filter(key => key !== closedInterface));
+    setInterfaces(newSelectedKeys);
   };
 
   return (
@@ -27,33 +23,44 @@ const InterfaceSelectContent: FC = () => {
         variant='flat'
         disallowEmptySelection
         selectionMode='multiple'
-        selectedKeys={selectedKeys}
-        onSelectionChange={setSelectedKeys}
+        selectedKeys={interfaces}
+        onSelectionChange={setInterfaces}
       >
-        <ListboxItem key='text'>⚡ Text</ListboxItem>
-        <ListboxItem key='number'>⚡ Number</ListboxItem>
-        <ListboxItem key='date'>⚡ Date</ListboxItem>
-        <ListboxItem key='single_date'>⚡ Single Date</ListboxItem>
-        <ListboxItem key='iteration'>⚡ Iteration</ListboxItem>
+        {detectedInterfaces?.map((interfaceName: any) => (
+          <ListboxItem key={interfaceName}>{`⚡ ${interfaceName}`}</ListboxItem>
+        )) || null}
       </Listbox>
-      <div className='flex flex-wrap gap-2 items-center'>
-        <p className='text-small text-default-500'>Selected interfaces: </p>
-        {Array.from(selectedKeys).map((selectedInterface: any, index: number) => (
-          <Chip
-            size='sm'
-            radius='full'
-            variant='flat'
-            key={selectedInterface}
-            onClose={(): void => handleChipClose(selectedInterface)}
-            classNames={{
-              base: backgroundColors[index % backgroundColors.length],
-              content: 'text-white',
-            }}
-          >
-            {selectedInterface}
-          </Chip>
-        ))}
+
+      <div className='mb-4'>
+        <p className='mb-3'>Selected interfaces </p>
+        <div className='flex flex-wrap gap-2 items-center'>
+          {Array.from(interfaces).map((interfaceName: any, index: number) => (
+            <Chip
+              size='sm'
+              radius='full'
+              variant='flat'
+              key={interfaceName}
+              onClose={(): void => handleChipClose(interfaceName)}
+              classNames={{
+                base: Colors.ChipClors[index % Colors.ChipClors.length],
+                content: 'text-white',
+              }}
+            >
+              {interfaceName}
+            </Chip>
+          ))}
+        </div>
       </div>
+      {interfaces.size === 1 ? (
+        <RadioGroup
+          label={<p className='text-white'>Scale number of rows</p>}
+          orientation='horizontal'
+        >
+          <Radio value='1'>1 Row</Radio>
+          <Radio value='10'>10 Rows</Radio>
+          <Radio value='50'>50 Rows</Radio>
+        </RadioGroup>
+      ) : null}
     </div>
   );
 };

@@ -33,3 +33,7 @@ export const RegexExp = {
   InterfaceName: /interface\s+(\w+)/g,
   Interface: /interface\s+(\w+)\s*{[^}]*}/gs,
 };
+
+export const Colors = {
+  ChipClors: ['bg-primary', 'bg-secondary', 'bg-warning', 'bg-danger', 'bg-default'],
+};

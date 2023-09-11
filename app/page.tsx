@@ -11,19 +11,12 @@ import InterfaceSelectModal from '@/components/interface-select-modal';
 const Home: FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [code, setCode] = useState<string>(Initials.DefaultInterface);
-  const [numberOfRows, setNumberOfRows] = useState(new Set(['1']));
-
-  const selectedInterfaces = useRef<string[] | null>(null);
+  const detectedInterfaces = useRef<string[] | null>(null);
 
   const handleOnGenerate = (): void => {
     const interfaceNamesToMock = extractInterfaceNames(code);
-    selectedInterfaces.current = interfaceNamesToMock;
+    detectedInterfaces.current = interfaceNamesToMock;
     onOpen();
-  };
-
-  // TODO: fix any type here
-  const handleOnRowCountChange = (newRowCount: any): void => {
-    setNumberOfRows(newRowCount);
   };
 
   const handleOnCodeChange = (newCode: string): void => {
@@ -32,11 +25,7 @@ const Home: FC = () => {
 
   return (
     <section className='h-full'>
-      <Header
-        onGenerate={handleOnGenerate}
-        numberOfRows={numberOfRows}
-        onRowCountChange={handleOnRowCountChange}
-      />
+      <Header onGenerate={handleOnGenerate} />
       <div className='flex justify-center gap-6 h-[calc(100vh-12rem)]'>
         <CodeEditor onCodeChange={handleOnCodeChange} initialCode={code} />
         <Result />
@@ -45,7 +34,7 @@ const Home: FC = () => {
       <InterfaceSelectModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        selectedInterfaces={selectedInterfaces.current}
+        detectedInterfaces={detectedInterfaces.current}
       />
     </section>
   );
