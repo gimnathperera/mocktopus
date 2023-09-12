@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Key } from 'react';
 import {
   Modal,
   ModalContent,
@@ -8,16 +8,31 @@ import {
   Button,
 } from '@nextui-org/react';
 import InterfaceSelectContent from '@/components/interface-select-content';
+import { RowNumber } from '@/types';
 
 interface Props {
   isOpen: boolean;
   detectedInterfaces: string[] | null;
+  numberOfRows: RowNumber;
+  interfaces: Set<string>;
   onOpenChange: () => void;
+  setNumberOfRows: (numberOfRows: RowNumber) => void;
+  setInterfaces: (keys: Set<Key>) => void;
+  handleChipClose: (closedInterface: string) => void;
+  onMockGenerate: () => void;
 }
 
-const InterfaceSelectModal: FC<Props> = ({ isOpen, onOpenChange, detectedInterfaces }) => {
-  console.log('🚀 ~ file: index.tsx:18 ~ detectedInterfaces:', detectedInterfaces);
-
+const InterfaceSelectModal: FC<Props> = ({
+  isOpen,
+  detectedInterfaces,
+  numberOfRows,
+  interfaces,
+  setNumberOfRows,
+  onOpenChange,
+  setInterfaces,
+  handleChipClose,
+  onMockGenerate,
+}) => {
   return (
     <>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
@@ -29,13 +44,20 @@ const InterfaceSelectModal: FC<Props> = ({ isOpen, onOpenChange, detectedInterfa
               </ModalHeader>
               <ModalBody>
                 <p>Please select the interfaces you want to generate mock data for.</p>
-                <InterfaceSelectContent detectedInterfaces={detectedInterfaces ?? []} />
+                <InterfaceSelectContent
+                  detectedInterfaces={detectedInterfaces ?? []}
+                  numberOfRows={numberOfRows}
+                  setNumberOfRows={setNumberOfRows}
+                  interfaces={interfaces}
+                  setInterfaces={setInterfaces}
+                  handleChipClose={handleChipClose}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button color='danger' variant='bordered' onPress={onClose}>
                   Close
                 </Button>
-                <Button color='primary' onPress={onClose}>
+                <Button color='primary' onPress={onMockGenerate}>
                   🪄 Generate
                 </Button>
               </ModalFooter>

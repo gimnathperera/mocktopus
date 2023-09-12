@@ -1,19 +1,33 @@
-import React, { FC, useState } from 'react';
+import React, { FC, Key } from 'react';
 import { Chip } from '@nextui-org/react';
 import { Colors } from '@/config/constants';
 import { Listbox, ListboxItem, Radio, RadioGroup } from '@nextui-org/react';
+import { RowNumber } from '@/types';
 
 interface Props {
   detectedInterfaces: string[];
+  interfaces: Set<string>;
+  numberOfRows: RowNumber;
+  setInterfaces: (keys: Set<Key>) => void;
+  handleChipClose: (closedInterface: string) => void;
+  setNumberOfRows: (numberOfRows: RowNumber) => void;
 }
 
-const InterfaceSelectContent: FC<Props> = ({ detectedInterfaces }) => {
-  const [interfaces, setInterfaces] = useState<Set<string> | any>(new Set(detectedInterfaces));
+const InterfaceSelectContent: FC<Props> = ({
+  detectedInterfaces,
+  numberOfRows,
+  setNumberOfRows,
+  interfaces,
+  setInterfaces,
+  handleChipClose,
+}) => {
+  const handleNumberOfRowsChange = (value: string): void => {
+    setNumberOfRows(value as RowNumber);
+  };
 
-  const handleChipClose = (closedInterface: string): void => {
-    if (interfaces.size === 1) return;
-    const newSelectedKeys = new Set(Array.from(interfaces).filter(key => key !== closedInterface));
-    setInterfaces(newSelectedKeys);
+  const handleInterfaceChange = (selectedInterfaces: Set<Key>): void => {
+    if (selectedInterfaces?.size > 1) setNumberOfRows('1');
+    setInterfaces(selectedInterfaces);
   };
 
   return (
@@ -24,7 +38,7 @@ const InterfaceSelectContent: FC<Props> = ({ detectedInterfaces }) => {
         disallowEmptySelection
         selectionMode='multiple'
         selectedKeys={interfaces}
-        onSelectionChange={setInterfaces}
+        onSelectionChange={(keys): void => handleInterfaceChange(new Set(keys))}
       >
         {detectedInterfaces?.map((interfaceName: any) => (
           <ListboxItem key={interfaceName}>{`⚡ ${interfaceName}`}</ListboxItem>
@@ -55,6 +69,8 @@ const InterfaceSelectContent: FC<Props> = ({ detectedInterfaces }) => {
         <RadioGroup
           label={<p className='text-white'>Scale number of rows</p>}
           orientation='horizontal'
+          value={numberOfRows}
+          onValueChange={handleNumberOfRowsChange}
         >
           <Radio value='1'>1 Row</Radio>
           <Radio value='10'>10 Rows</Radio>
