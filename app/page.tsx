@@ -12,7 +12,7 @@ import { RowNumber } from '@/types';
 const Home: FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const detectedInterfaces = useRef<string[] | null>(null);
-  const mockResult = useRef<string | null>(JSON.stringify(Initials.DefaultMockResult));
+  const mockResult = useRef<string | null>(JSON.stringify(Initials.DefaultMockResult, null, 2));
   const [code, setCode] = useState<string>(Initials.DefaultInterface);
   const [numberOfRows, setNumberOfRows] = useState<RowNumber>('1');
   const [interfaces, setInterfaces] = useState<Set<string> | any>(
@@ -37,7 +37,7 @@ const Home: FC = () => {
   };
 
   const handleOnMockGenerate = (): void => {
-    const generatedMocks = generateMocks(code, Array.from(interfaces));
+    const generatedMocks = generateMocks(code, Array.from(interfaces), Number(numberOfRows));
     mockResult.current = JSON.stringify(generatedMocks, null, 2);
 
     onOpenChange();
