@@ -4,9 +4,10 @@ import { Spinner } from '@nextui-org/react';
 
 interface Props {
   mockResult: string;
+  onCopyToClipboard: () => void;
 }
 
-const Result: FC<Props> = ({ mockResult }) => {
+const Result: FC<Props> = ({ mockResult, onCopyToClipboard }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Result: FC<Props> = ({ mockResult }) => {
         <Button color='success' variant='bordered' className='mr-4'>
           Download
         </Button>
-        <Button color='warning' variant='bordered'>
+        <Button color='warning' variant='bordered' onClick={onCopyToClipboard}>
           Copy to Clipboard
         </Button>
       </div>

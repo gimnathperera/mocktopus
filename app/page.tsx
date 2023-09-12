@@ -43,12 +43,19 @@ const Home: FC = () => {
     onOpenChange();
   };
 
+  const handleOnCopyToClipboard = (): void => {
+    navigator.clipboard.writeText(mockResult.current ?? '');
+  };
+
   return (
     <section className='h-full'>
       <Header onGenerate={handleOnGenerate} />
       <div className='flex justify-center gap-6 h-[calc(100vh-12rem)]'>
         <CodeEditor onCodeChange={handleOnCodeChange} initialCode={code} />
-        <Result mockResult={mockResult?.current ?? ''} />
+        <Result
+          mockResult={mockResult?.current ?? ''}
+          onCopyToClipboard={handleOnCopyToClipboard}
+        />
       </div>
 
       <InterfaceSelectModal
