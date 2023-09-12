@@ -8,6 +8,7 @@ import { extractInterfaceNames, generateMocks } from '@/utils';
 import { Initials } from '@/config/constants';
 import InterfaceSelectModal from '@/components/interface-select-modal';
 import { RowNumber } from '@/types';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Home: FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -45,6 +46,16 @@ const Home: FC = () => {
 
   const handleOnCopyToClipboard = (): void => {
     navigator.clipboard.writeText(mockResult.current ?? '');
+    toast.success('Copied to clipboard');
+  };
+
+  const handleOnDownload = (): void => {
+    const element = document.createElement('a');
+    const file = new Blob([mockResult.current ?? ''], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = 'mock.json';
+    document.body.appendChild(element);
+    element.click();
   };
 
   return (
@@ -55,6 +66,7 @@ const Home: FC = () => {
         <Result
           mockResult={mockResult?.current ?? ''}
           onCopyToClipboard={handleOnCopyToClipboard}
+          onDownload={handleOnDownload}
         />
       </div>
 
@@ -69,6 +81,7 @@ const Home: FC = () => {
         setInterfaces={setInterfaces}
         handleChipClose={handleChipClose}
       />
+      <Toaster position='bottom-left' reverseOrder={false} />
     </section>
   );
 };
