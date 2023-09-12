@@ -7,6 +7,7 @@ export const siteConfig = {
   navMenuItems: [],
   links: {
     github: 'https://github.com/Gimnath-Perera',
+    repository: 'https://github.com/Gimnath-Perera/mocktopus',
     twitter: 'https://twitter.com/getnextui',
     docs: 'https://nextui.org',
     discord: 'https://discord.gg/9b6yyZKmH4',

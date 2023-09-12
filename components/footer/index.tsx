@@ -1,3 +1,4 @@
+import { siteConfig } from '@/config/site';
 import { Link } from '@nextui-org/link';
 import { FC } from 'react';
 
@@ -9,7 +10,7 @@ const Footer: FC<Props> = ({}) => {
       <Link
         isExternal
         className='flex items-center gap-1 text-current'
-        href='https://nextui-docs-v2.vercel.app?utm_source=next-app-template'
+        href={siteConfig.links.github}
         title='nextui.org homepage'
       >
         <span className='text-default-600'>Made with 💖 by</span>

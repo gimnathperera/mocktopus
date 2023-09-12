@@ -9,14 +9,12 @@ export const Initials = {
     }
     `,
 
-  DefaultMockResult: `{
-    User: {
-      firstName: "Kenny",
-      lastName: "Goodwin",
-      username: "Jessie97",
-      emailAddress: "Agustina92@yahoo.com"
-    }
-  }`,
+  DefaultMockResult: {
+    firstName: 'Kenny',
+    lastName: 'Goodwin',
+    username: 'Jessie97',
+    emailAddress: 'Agustina92@yahoo.com',
+  },
 };
 
 export const RegexExp = {

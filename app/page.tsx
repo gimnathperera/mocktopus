@@ -8,11 +8,12 @@ import { extractInterfaceNames, generateMocks } from '@/utils';
 import { Initials } from '@/config/constants';
 import InterfaceSelectModal from '@/components/interface-select-modal';
 import { RowNumber } from '@/types';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Home: FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const detectedInterfaces = useRef<string[] | null>(null);
-  const mockResult = useRef<string | null>(JSON.stringify(Initials.DefaultMockResult));
+  const mockResult = useRef<string | null>(JSON.stringify(Initials.DefaultMockResult, null, 2));
   const [code, setCode] = useState<string>(Initials.DefaultInterface);
   const [numberOfRows, setNumberOfRows] = useState<RowNumber>('1');
   const [interfaces, setInterfaces] = useState<Set<string> | any>(
@@ -37,10 +38,24 @@ const Home: FC = () => {
   };
 
   const handleOnMockGenerate = (): void => {
-    const generatedMocks = generateMocks(code, Array.from(interfaces));
+    const generatedMocks = generateMocks(code, Array.from(interfaces), Number(numberOfRows));
     mockResult.current = JSON.stringify(generatedMocks, null, 2);
 
     onOpenChange();
+  };
+
+  const handleOnCopyToClipboard = (): void => {
+    navigator.clipboard.writeText(mockResult.current ?? '');
+    toast.success('Copied to clipboard');
+  };
+
+  const handleOnDownload = (): void => {
+    const element = document.createElement('a');
+    const file = new Blob([mockResult.current ?? ''], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = 'mock.json';
+    document.body.appendChild(element);
+    element.click();
   };
 
   return (
@@ -48,7 +63,11 @@ const Home: FC = () => {
       <Header onGenerate={handleOnGenerate} />
       <div className='flex justify-center gap-6 h-[calc(100vh-12rem)]'>
         <CodeEditor onCodeChange={handleOnCodeChange} initialCode={code} />
-        <Result mockResult={mockResult?.current ?? ''} />
+        <Result
+          mockResult={mockResult?.current ?? ''}
+          onCopyToClipboard={handleOnCopyToClipboard}
+          onDownload={handleOnDownload}
+        />
       </div>
 
       <InterfaceSelectModal
@@ -62,6 +81,7 @@ const Home: FC = () => {
         setInterfaces={setInterfaces}
         handleChipClose={handleChipClose}
       />
+      <Toaster position='bottom-left' reverseOrder={false} />
     </section>
   );
 };

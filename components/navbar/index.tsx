@@ -29,7 +29,7 @@ export const Navbar: FC = () => {
 
       <NavbarContent className='hidden sm:flex basis-1/5 sm:basis-full' justify='end'>
         <NavbarItem className='hidden sm:flex gap-2'>
-          <Link isExternal href={siteConfig.links.github} aria-label='Github'>
+          <Link isExternal href={siteConfig.links.repository} aria-label='Github'>
             <GithubIcon className='text-default-500' />
           </Link>
           <ThemeSwitch />
@@ -37,7 +37,7 @@ export const Navbar: FC = () => {
       </NavbarContent>
 
       <NavbarContent className='sm:hidden basis-1 pl-4' justify='end'>
-        <Link isExternal href={siteConfig.links.github} aria-label='Github'>
+        <Link isExternal href={siteConfig.links.repository} aria-label='Github'>
           <GithubIcon className='text-default-500' />
         </Link>
         <ThemeSwitch />
