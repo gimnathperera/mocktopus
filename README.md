@@ -10,6 +10,8 @@
 
 Generate mock data effortlessly from TypeScript interfaces in a web application powered by Next.js and NextUI.
 
+<img width="1431" alt="image" src="https://github.com/Gimnath-Perera/mocktopus/assets/55834384/8a9ea126-a193-4831-b455-83139546df75">
+
 ## Table of Contents
 
 - [Mocktopus | TypeScript Interface Mock Data Generator](#mocktopus--typescript-interface-mock-data-generator)
@@ -60,7 +62,7 @@ The TypeScript Interface Mock Data Generator is a user-friendly web application 
 
 4. Open your browser and visit http://localhost:3000.
 
-##Usage
+## Usage
 
 1. **Input TypeScript Interfaces**: Define your TypeScript interfaces in the application.
 2. **Configure Data Generation**: Set rules, constraints, and formats for each field.
