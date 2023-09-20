@@ -10,7 +10,7 @@
 
 Generate mock data effortlessly from TypeScript interfaces in a web application powered by Next.js and NextUI.
 
-<img width="1431" alt="image" src="https://github.com/Gimnath-Perera/mocktopus/assets/55834384/8a9ea126-a193-4831-b455-83139546df75">
+<img width="1431" alt="image" src="/resources/screen-capture.gif">
 
 ## Table of Contents
 
@@ -19,6 +19,7 @@ Generate mock data effortlessly from TypeScript interfaces in a web application 
   - [About](#about)
   - [Features](#features)
   - [Getting Started](#getting-started)
+  - [Usage](#usage)
   - [Contributing](#contributing)
   - [License](#license)
 
