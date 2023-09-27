@@ -33,6 +33,10 @@ const Home: FC = () => {
     onOpen();
   };
 
+  const handleOnReset = (): void => {
+    window.location.reload();
+  };
+
   const handleOnCodeChange = (newCode: string): void => {
     setCode(newCode);
   };
@@ -60,7 +64,7 @@ const Home: FC = () => {
 
   return (
     <section className='h-full'>
-      <Header onGenerate={handleOnGenerate} />
+      <Header onGenerate={handleOnGenerate} onReset={handleOnReset} />
       <div className='flex justify-center gap-6 h-[calc(100vh-12rem)]'>
         <CodeEditor onCodeChange={handleOnCodeChange} initialCode={code} />
         <Result
