@@ -1,18 +1,11 @@
-import { FC } from 'react';
-import {
-  Navbar as NextUINavbar,
-  NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-} from '@nextui-org/navbar';
-import { Link } from '@nextui-org/link';
-import { siteConfig } from '@/config/site';
-import NextLink from 'next/link';
-import { ThemeSwitch } from '@/components/theme-switch';
 import { GithubIcon } from '@/components/icons';
+import { ThemeSwitch } from '@/components/theme-switch';
+import { siteConfig } from '@/config/site';
+import { Link } from '@nextui-org/link';
+import { NavbarBrand, NavbarContent, NavbarItem, Navbar as NextUINavbar } from '@nextui-org/navbar';
 import Image from 'next/image';
+import NextLink from 'next/link';
+import { FC } from 'react';
 import logo from '../../public/logo.png';
 
 export const Navbar: FC = () => {
@@ -41,12 +34,7 @@ export const Navbar: FC = () => {
           <GithubIcon className='text-default-500' />
         </Link>
         <ThemeSwitch />
-        <NavbarMenuToggle />
       </NavbarContent>
-
-      <NavbarMenu>
-        <div className='mx-4 mt-2 flex flex-col gap-2'></div>
-      </NavbarMenu>
     </NextUINavbar>
   );
 };
