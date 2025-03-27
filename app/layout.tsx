@@ -31,12 +31,14 @@ interface Props {
 const RootLayout: FC<Props> = ({ children }) => {
   return (
     <html lang='en' suppressHydrationWarning>
-      <head />
+      <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
+      </head>
       <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
-          <div className='relative flex flex-col h-screen'>
+          <div className='relative flex flex-col min-h-screen'>
             <Navbar />
-            <main className='container mx-auto px-12 flex-grow'>{children}</main>
+            <main className='container mx-auto px-4 sm:px-6 lg:px-12 flex-grow'>{children}</main>
             <Footer />
           </div>
         </Providers>

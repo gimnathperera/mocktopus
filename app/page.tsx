@@ -65,13 +65,17 @@ const Home: FC = () => {
   return (
     <section className='h-full'>
       <Header onGenerate={handleOnGenerate} onReset={handleOnReset} />
-      <div className='flex justify-center gap-6 h-[calc(100vh-12rem)]'>
-        <CodeEditor onCodeChange={handleOnCodeChange} initialCode={code} />
-        <Result
-          mockResult={mockResult?.current ?? ''}
-          onCopyToClipboard={handleOnCopyToClipboard}
-          onDownload={handleOnDownload}
-        />
+      <div className='flex flex-col md:flex-row justify-center gap-6 h-full md:h-[calc(100vh-12rem)]'>
+        <div className='w-full md:w-1/2'>
+          <CodeEditor onCodeChange={handleOnCodeChange} initialCode={code} />
+        </div>
+        <div className='w-full md:w-1/2'>
+          <Result
+            mockResult={mockResult?.current ?? ''}
+            onCopyToClipboard={handleOnCopyToClipboard}
+            onDownload={handleOnDownload}
+          />
+        </div>
       </div>
 
       <InterfaceSelectModal

@@ -18,7 +18,7 @@ const CodeEditor: FC<Props> = ({ onCodeChange, initialCode }) => {
   );
 
   return (
-    <div className='bg-[#1E1E1E] rounded-lg w-1/2'>
+    <div className='bg-[#1E1E1E] rounded-lg w-full h-[70vh] md:h-full'>
       <div className='py-2 h-full'>
         <Editor
           defaultLanguage='typescript'
@@ -27,7 +27,7 @@ const CodeEditor: FC<Props> = ({ onCodeChange, initialCode }) => {
             minimap: {
               enabled: false,
             },
-            fontSize: 14,
+            fontSize: 12, // Reduced font size for mobile
           }}
           loading={<Spinner size='sm' />}
           onChange={handleCodeChange}
